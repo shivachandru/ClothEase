@@ -1,0 +1,22 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    public function up(): void
+    {
+        Schema::table('shops', function (Blueprint $table) {
+            $table->string('bill_prefix', 30)->default('CE')->after('name');
+            $table->unsignedBigInteger('bill_next_number')->default(1)->after('bill_prefix');
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table('shops', function (Blueprint $table) {
+            $table->dropColumn(['bill_prefix', 'bill_next_number']);
+        });
+    }
+};

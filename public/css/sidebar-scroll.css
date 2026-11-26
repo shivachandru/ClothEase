@@ -1,0 +1,16 @@
+.sidebar-scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #cad8d0 transparent;
+    padding-right: 2px;
+}
+
+.sidebar-scroll::-webkit-scrollbar { width: 5px; }
+.sidebar-scroll::-webkit-scrollbar-thumb { background: #cad8d0; border-radius: 8px; }
+.sidebar-bottom { flex: 0 0 auto; margin-top: 10px; background: #fff; }
+.user-chip > span:nth-child(2) { min-width: 0; }
+.user-chip b { max-width: 145px; }

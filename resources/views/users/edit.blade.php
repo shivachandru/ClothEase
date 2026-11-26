@@ -1,0 +1,11 @@
+@extends('layouts.app') @section('title','Edit user') @section('section','Users & access')
+@section('content')
+<div class="page-heading"><div><span class="eyebrow">TEAM ACCESS</span><h1>Edit user</h1><p>Update {{ $staff->name }}’s login and assigned role.</p></div><a class="button secondary" href="{{ route('users.index') }}">← User list</a></div>
+<section class="panel form-panel" style="max-width:900px"><form method="post" action="{{ route('users.update',$staff) }}" class="form-grid">@csrf @method('PUT')
+<label>Name<input name="name" value="{{ old('name',$staff->name) }}" required maxlength="100"></label><label>Username<input name="username" value="{{ old('username',$staff->username) }}" required maxlength="80" pattern="[A-Za-z0-9_-]+"></label><label>Email<input name="email" type="email" value="{{ old('email',$staff->email) }}" required maxlength="150"></label>
+@if($staff->role==='owner')<label>Access role<input value="Owner (protected)" disabled></label>@else<label>Access role<select name="access_role_id" required>@foreach($roles as $role)<option value="{{ $role->id }}" @selected((string)old('access_role_id',$staff->access_role_id)===(string)$role->id)>{{ $role->name }}</option>@endforeach</select></label>@endif
+<label>Status<select name="is_active"><option value="1" @selected((string)old('is_active',(int)$staff->is_active)==='1')>Active</option><option value="0" @selected((string)old('is_active',(int)$staff->is_active)==='0')>Disabled</option></select></label>
+<label>New password <span class="optional">LEAVE BLANK TO KEEP CURRENT</span><input type="password" name="password" minlength="10" autocomplete="new-password"></label><label>Confirm new password<input type="password" name="password_confirmation" minlength="10" autocomplete="new-password"></label><label>New quick PIN <span class="optional">OPTIONAL · 4–8 DIGITS</span><input name="pin" inputmode="numeric" pattern="[0-9]{4,8}" maxlength="8"></label>
+<p class="wide muted">Sidebar access is controlled by the assigned role. <a class="text-link" href="{{ route('masters.roles.index') }}">Manage roles →</a></p>
+<div class="form-actions wide"><a class="button secondary" href="{{ route('users.index') }}">Cancel</a><button class="button primary">Save user</button></div></form></section>
+@endsection
