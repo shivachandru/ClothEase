@@ -1,3 +1,6 @@
+# ClothEase
+ClothEase
+
 # ClothEase POS
 
 ClothEase is a local-first clothing shop billing and inventory application built on Laravel 12, PHP 8.2+, and a database abstraction supporting SQLite for development and MySQL/MariaDB for shop installations.
